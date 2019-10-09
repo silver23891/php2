@@ -1,0 +1,32 @@
+.container {
+	width: 1000px;
+	padding: 5px;
+	margin: 0 auto;
+}
+
+#goods {
+	padding: 5px;
+}
+
+.good {
+	float: left;
+	width: 15%;
+	margin: 0 0 5px 5px;
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 5px;
+}
+
+.good:hover {
+	background-color: grey;
+}
+
+.button {
+	width: 75px;
+	height: 30px;
+	margin-top: 10px;
+}
+
+.clearfix {
+	clear: both;
+}

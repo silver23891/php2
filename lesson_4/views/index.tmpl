@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+  <script>
+    var offset = 0;
+    function loadGoods() {
+      $.ajax({
+        url: 'models/LoadGoods.php',
+        type: 'GET',
+        data: {'offset': offset},
+        success: function(data) {
+          content = $("#goods").html();
+          $("#goods").html(content+data);
+          offset = offset + 25;
+        }
+      });
+    }
+  </script>
+  <div class="container">
+    <header>
+      <h1>Каталог</h1>
+    </header>
+    <div id="goods"> 
+    </div>
+    <div class="clearfix"></div>
+    <button class="button" onclick="loadGoods()">Еще</button>
+  </div>
+  <script>loadGoods()</script>
+</body>
+</html>
