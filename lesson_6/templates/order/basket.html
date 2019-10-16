@@ -1,0 +1,25 @@
+{% include 'header.html' %}
+<h2>Корзина покупателя</h2>
+<table>
+    <tr>
+        <th>Номер товара</th>
+        <th>Название товара</th>
+        <th>Цена товара</th>
+        <th>Количество</th>
+    </tr>
+    {% for good in content_data %}
+    <tr>
+        <td>{{ good.id_good }}</td>
+        <td>{{ good.name }}</td>
+        <td>{{ good.price }}</td>
+        <td>{{ good.quantity }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<form action='index.php?path=order/create' method="post">
+    <input type='text' name='fio' required="true" autofocus="true" placeholder='Введите ваше имя'>
+    <input type='text' name='phone' required="true" placeholder='Введите ваш телефон'>
+    <br>
+    <input type='submit' value='Оформить заказ'>
+</form>
+{% include 'footer.html' %}

@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+<script>
+    function addBasket($id, $name, $price) {
+        $.ajax({
+            url: "index.php?path=order/add",
+            type: "POST",
+            data: {'id_good': $id, 'name': $name, 'price': $price},
+            success: function($data) {
+                alert('Товар добавлен в корзину');
+            }
+        });
+    }
+</script>
+<h1>{{ content_data.name }}</h1>
+<p>{{ content_data.price }}</p>
+<p id='buyme' class='good_{{ content_data.id_good }}' onclick="addBasket({{ content_data.id_good }}, '{{content_data.name}}', {{ content_data.price }})">Купить</p>
+
+{% include 'footer.html' %}
