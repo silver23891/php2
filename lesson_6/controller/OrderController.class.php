@@ -57,7 +57,7 @@ class OrderController extends Controller
                 );
             }
             unset($_SESSION['basket']);
-            return ['order' => 'Заказ успешно оформлен. Номер заказа - ' . $order_id];
+            return ['order' => 'Заказ успешно оформлен. Номер заказа: ' . $order_id];
         }
         return ['order' => 'При оформлении заказа произошла ошибка'];
     }

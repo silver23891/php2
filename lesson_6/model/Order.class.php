@@ -10,13 +10,13 @@ class Order extends Model {
             'size' => 512
         ];
 
-        self::$properties['address'] = [
+        self::$properties['fio'] = [
             'type' => 'varchar',
             'size' => 512
         ];
 
-        self::$properties['email'] = [
+        /*self::$properties['email'] = [
             'type' => 'float'
-        ];
+        ];*/
     }
 }

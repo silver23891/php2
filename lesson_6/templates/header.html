@@ -2,6 +2,21 @@
 <html>
     <head>
         <title>{{ title }}</title>
+        <style type="text/css">
+            .button {
+                cursor: pointer; 
+                border: 1px solid black; 
+                border-radius: 2px; 
+                display: block; 
+                width: 100px; 
+                height: 35px; 
+                line-height: 35px; 
+                text-align: center;
+            }
+            .button:hover {
+                background-color: grey;
+            }
+        </style>
     </head>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <!--<script type="text/javascript" src="js/main.js"></script>
@@ -16,7 +31,8 @@
         </ul>
 
     <div>
-        <a href="index.php?path=order/basket">Корзина</a>
+        <a href="index.php">Главная</a> | <a href="index.php?path=order/basket">Корзина</a> | <a href="index.php?path=admin">Админка</a>
     </div>
+    
 
 

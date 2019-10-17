@@ -3,10 +3,10 @@ class AdminController extends Controller
 {
     
     protected $controls = [
-        'pages' => 'Page',
+        //'pages' => 'Page',
         'orders' => 'Order',
-        'categories' => 'Category',
-        'goods' => 'Good'
+        //'categories' => 'Category',
+        //'goods' => 'Good'
     ];
 
     public $title = 'admin';
@@ -73,7 +73,6 @@ class AdminController extends Controller
             $tmp = new $this->controls[$data['id']]($item);
             $items[] = (array)$tmp;
         }
-
         return ['name' => $data['id'],'fields' => $fields, 'items' => $items];
     }
 

@@ -13,6 +13,6 @@
 </script>
 <h1>{{ content_data.name }}</h1>
 <p>{{ content_data.price }}</p>
-<p id='buyme' class='good_{{ content_data.id_good }}' onclick="addBasket({{ content_data.id_good }}, '{{content_data.name}}', {{ content_data.price }})">Купить</p>
+<p id='buyme' class='good_{{ content_data.id_good }} button' onclick="addBasket({{ content_data.id_good }}, '{{content_data.name}}', {{ content_data.price }})">Купить</p>
 
 {% include 'footer.html' %}
