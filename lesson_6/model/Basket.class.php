@@ -8,61 +8,60 @@
  */
 class Basket extends Model
 {
-    protected $id_user = NULL;
-    protected $id_good;
-    protected $price = 0;
-    protected $is_in_order = 0;
-    protected $id_order = NULL;
-
-    function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    function setUser($id_user){
-        $this->id_user = $id_user;
-    }
-
     /**
-     * @param mixed $id_good
+     * Добавить товар в корзину
+     * 
+     * @param int $id Идентификатор товара
      */
-    public function setIdGood($id_good)
+    public static function addGood($id)
     {
-        $this->id_good = $id_good;
+        $basket = [];
+        if (isset($_SESSION['basket'])) {
+            $basket = $_SESSION['basket'];
+        }
+        if (
+            ($index = array_search(
+                $_POST['id_good'], 
+                array_column($basket, 'id_good')
+            )) !== false
+        ) {
+            $basket[$index]['quantity'] += 1;
+        } else {
+            $basket[] = [
+                'id_good' => $_POST['id_good'],
+                'name' => $_POST['name'],
+                'price' => $_POST['price'],
+                'quantity' => 1
+            ];
+        }
+        $_SESSION['basket'] = $basket;
     }
-
+    
     /**
-     * @param mixed $price
+     * Получить все товары корзины
+     * 
+     * @return array
      */
-    public function setPrice($price)
+    public static function getBasket()
     {
-        $this->price = $price;
+        $basket = [];
+        if (isset($_SESSION['basket'])) {
+            $basket = $_SESSION['basket'];
+        }
+        return $basket;
     }
-
+    
     /**
-     * @param int $is_in_order
+     * Получить количество товаров в корзине
+     * 
+     * @return int
      */
-    public function setIsInOrder($is_in_order)
+    public static function getBasketSize()
     {
-        $this->is_in_order = $is_in_order;
-    }
-
-    /**
-     * @param mixed $id_order
-     */
-    public function setIdOrder($id_order)
-    {
-        $this->id_order = $id_order;
-    }
-
-    public function save(){
-        $query = "INSERT INTO basket(id_user, id_good, price, is_in_order) VALUES 
-                  (
-                    ".(($this->id_user)==NULL ? 'NULL' : $this->id_user).",
-                    ".$this->id_good.",
-                    ".$this->price.",
-                    ".$this->is_in_order."
-                  )";
-        db::getInstance()->Query($query);
+        $basket = [];
+        if (isset($_SESSION['basket'])) {
+            $basket = $_SESSION['basket'];
+        }
+        return count($basket);
     }
 }

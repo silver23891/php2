@@ -1,10 +1,8 @@
 <?php
-require_once "autoload.php";
+require_once "../autoload.php";
 
-abstract class BaseTest extends PHPUnit_Framework_TestCase{
-    protected function setUp()
-    {
-        App::Init();
-    }
+use PHPUnit\Framework\TestCase;
 
+//abstract class BaseTest extends PHPUnit_Framework_TestCase{
+abstract class BaseTest extends TestCase{
 }

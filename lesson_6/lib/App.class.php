@@ -45,7 +45,8 @@ class App
             $data = [
                 'content_data' => $controller->$methodName($_GET),
                 'title' => $controller->title,
-                'categories' => Category::getCategories(0)
+                'categories' => Category::getCategoryList(),
+                'basket' => isset($_SESSION['basket']) ? count($_SESSION['basket']):0
             ];
 
             $view = $controller->view . '/' . $methodName . '.html';

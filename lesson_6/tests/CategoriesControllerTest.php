@@ -1,5 +1,5 @@
 <?php
-require_once "tests/BaseTest.php";
+require_once "BaseTest.php";
 
 class CategoriesControllerTest extends BaseTest
 {
@@ -7,6 +7,12 @@ class CategoriesControllerTest extends BaseTest
      * @dataProvider providerCategoriesController
      */
     public function testIndex($a){
+        db::getInstance()->Connect(
+            Config::get('db_user'), 
+            Config::get('db_password'), 
+            Config::get('db_base'), 
+            Config::get('db_host')
+        );
         $cc = new CategoriesController();
         $cc_result = $cc->index($a);
 
