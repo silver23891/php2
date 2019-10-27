@@ -1,0 +1,36 @@
+{% include 'header.html' %}
+<script>
+    function updateBasket() {
+        $.ajax({
+            url: "index.php?path=order/basketSize",
+            type: "POST",
+            success: function(data) {
+                data = JSON.parse(data);
+                content_data = JSON.parse(data.content_data);
+                $("#basket").text(content_data.basketText);
+            }
+        });
+    }
+    function addBasket($id, $name, $price) {
+        $.ajax({
+            url: "index.php?path=order/add",
+            type: "POST",
+            data: {'id_good': $id, 'name': $name, 'price': $price},
+            success: function($data) {
+                updateBasket();
+                alert('Товар добавлен в корзину');
+            }
+        });
+    }
+</script>
+<ol class="breadcrumb">
+  <li><a href="index.php?path=categories/index/{{ content_data.id_category }}">{{ content_data.category_name }}</a></li>
+  <li class="active">{{ content_data.name }}</li>
+</ol>
+<h1>{{ content_data.name }}</h1>
+<img src="img/goods/{{ content_data.image }}" width="400">
+<p><strong>Цена:</strong> {{ content_data.price }}</p>
+<p id='buyme' class='good_{{ content_data.id_good }} btn btn-primary' onclick="addBasket({{ content_data.id_good }}, '{{content_data.name}}', {{ content_data.price }})">Купить</p>
+<p><strong>Описание товара:</strong> {{ content_data.good_description }}</p>
+
+{% include 'footer.html' %}

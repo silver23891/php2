@@ -1,0 +1,19 @@
+{% include 'header.html' %}
+<div class="list-group">
+    {% for subcategory in content_data.subcategories %}
+    <a href="index.php?path=categories&id={{ subcategory.id_category }}" class="list-group-item">{{ subcategory.name }}</a>
+    {% endfor %}
+</div>
+<h1>{{ content_data.category }}</h1>
+{% for good in content_data.goods %}
+  <div class="col-sm-5 col-md-3 pull-left">
+    <div class="thumbnail">
+      <img src="img/goods/{{ good.image }}">
+      <div class="caption">
+        <h3>{{ good.name }}</h3>
+        <p><a href="index.php?path=categories/goods/{{ good.id_good }}/" class="btn btn-primary" role="button">Подробнее</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% include 'footer.html' %}
